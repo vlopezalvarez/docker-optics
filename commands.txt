@@ -1,0 +1,21 @@
+This is a quick guide for having fast access to the commands
+
+== WORKING WITH CONTAINERS
+These are examples to run from command line the containers:
+
+- Build a Docker image
+docker build -t docker-optics .
+- Run the a context of the Docker image with a shared folder
+docker container run --name optics-image -v ~/Downloads/lab:/root/lab -it docker-optics 
+- Delete the context of the Docker image
+docker rm optics-image 
+- Delete Docker image
+docker image rm docker-optics
+
+== SNMP
+- Start the SNMP server
+snmpsimd.py --data-dir=data --agent-udpv4-endpoint=127.0.0.1:1161 --process-user=root --process-group=root
+
+- Obtain information from the SNMP server
+snmpget -c public -v1 127.0.0.1:1161 1.3.6.1.2.1.1.7.0
+
