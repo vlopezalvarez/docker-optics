@@ -16,6 +16,25 @@ docker image rm docker-optics
 - Start the SNMP server
 snmpsimd.py --data-dir=data --agent-udpv4-endpoint=127.0.0.1:1161 --process-user=root --process-group=root
 
+- Run a console in the Docker image
+docker exec -it optics-image /bin/bash
+
 - Obtain information from the SNMP server
 snmpget -c public -v1 127.0.0.1:1161 1.3.6.1.2.1.1.7.0
+
+
+== YANG
+
+cd /root/OFC_SC472/yang
+cat topology.yang
+pyang -f tree topology.yang
+pyang -f sample-xml-skeleton --sample-xml-skeleton-annotations topology.yang
+export PYBINDPLUGIN=`/usr/bin/env python3 -c \
+'import pyangbind; import os; print ("{}/plugin".format(os.path.dirname(pyangbind.__file__)))'`
+echo $PYBINDPLUGIN
+pyang -f pybind topology.yang --plugindir $PYBINDPLUGIN -o binding_topology.py
+python3 topology.py
+
+
+== NETCONF
 
