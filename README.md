@@ -1,5 +1,5 @@
-# SNMP Server Docker Image
+# Optics Docker Image
 
-This docker image contains snmp and snmpsim to run a SNMP server.
+This docker image contains the files to run the exercises for SNMP, NETCONF in the course Optical Communication Systems.
 
 
