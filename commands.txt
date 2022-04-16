@@ -38,3 +38,11 @@ python3 topology.py
 
 == NETCONF
 
+cd /root/OFC_SC472/netconf 
+python3 serverTopology.py
+
+- Run a client in the Docker image
+docker exec -it optics-image /bin/bash
+
+cd /root/OFC_SC472/netconf
+python3 clientTopology.py
