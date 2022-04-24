@@ -21,7 +21,6 @@ RUN python3 -m venv venv
 RUN venv/bin/pip install pynacl
 
 # Install graphviz for plantuml
-
 RUN apt-get install -y graphviz
 
 # Install Java
@@ -29,6 +28,15 @@ RUN apt-get install -y openjdk-11-jre
 
 # Install Pyangbind
 RUN git clone https://github.com/robshakir/pyangbind.git && cd pyangbind && python3 setup.py install
+
+# Install go
+RUN apt-get install -y golang-go
+RUN apt-get install -y nano
+RUN mkdir /usr/share/gocode/
+RUN mkdir /usr/share/gocode/src/
+RUN export GOPATH=/usr/share/gocode/
+RUN go get github.com/google/gnxi
+RUN go get github.com/openconfig/ygot/generator
 
 # Use a nicer Linux shell
 COPY bashrc /root/.bashrc
