@@ -36,7 +36,8 @@ RUN mkdir /usr/share/gocode/
 RUN mkdir /usr/share/gocode/src/
 RUN export GOPATH=/usr/share/gocode/
 RUN go get github.com/google/gnxi
-RUN go get github.com/openconfig/ygot/generator
+RUN go get github.com/openconfig/ygot/ytypes
+#RUN go get github.com/openconfig/ygot/generator
 
 # Use a nicer Linux shell
 COPY bashrc /root/.bashrc
