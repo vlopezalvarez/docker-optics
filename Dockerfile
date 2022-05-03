@@ -30,6 +30,12 @@ RUN apt-get install -y openjdk-11-jre
 # Install Pyangbind
 RUN git clone https://github.com/robshakir/pyangbind.git && cd pyangbind && python3 setup.py install
 
+<<<<<<< Updated upstream
+=======
+# Install nano
+RUN apt-get install -y nano
+
+>>>>>>> Stashed changes
 # Use a nicer Linux shell
 COPY bashrc /root/.bashrc
 ENTRYPOINT [ "/bin/bash" ]

@@ -46,3 +46,43 @@ docker exec -it optics-image /bin/bash
 
 cd /root/OFC_SC472/netconf
 python3 clientTopology.py
+<<<<<<< Updated upstream
+=======
+
+
+== RESTCONF
+
+- Generate YAML file
+cd OFC_SC472/restconf
+java -jar swagger-generator-cli-1.1.11-executable.jar -yang-dir ../yang/ -output connection.yaml connection
+
+- Generate Server Code
+wget https://repo1.maven.org/maven2/io/swagger/codegen/v3/swagger-codegen-cli/3.0.11/swagger-codegen-cli-3.0.11.jar -O swagger-codegen-cli.jar
+java -jar swagger-codegen-cli.jar generate -i connection.yaml -l python-flask -o server/
+
+- Launch the empty Server
+cd /root/OFC_SC472/restconf/server
+cp swagger_server/swagger/swagger.yaml swagger_old.yaml
+cat swagger_old.yaml | sed 's/name: connection_id/name: connection-id/' > swagger_server/swagger/swagger.yaml
+python3 -m swagger_server
+
+- Run a client in the Docker image
+docker exec -it optics-image /bin/bash
+
+- Interact with the empty RESTCONF Server
+cd /root/OFC_SC472/restconf
+curl -X POST -H "Content-Type: application/yang-data+json" http://127.0.0.1:8080/data/connection/ -d@conn1.json
+
+- Launch the Example RESTCONF Server
+cd /root/OFC_SC472/restconf/connectionserver
+python3 -m swagger_server
+
+- Interact with the Example RESTCONF Server
+cd /root/OFC_SC472/restconf
+curl -X POST -H "Content-Type: application/yang-data+json" http://127.0.0.1:8080/data/connection/ -d@conn1.json
+curl -X GET -H "Content-Type: application/yang-data+json" http://127.0.0.1:8080/data/connection=0/
+
+
+
+
+>>>>>>> Stashed changes
