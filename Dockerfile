@@ -21,7 +21,6 @@ RUN python3 -m venv venv
 RUN venv/bin/pip install pynacl
 
 # Install graphviz for plantuml
-
 RUN apt-get install -y graphviz
 
 # Install Java
@@ -30,12 +29,9 @@ RUN apt-get install -y openjdk-11-jre
 # Install Pyangbind
 RUN git clone https://github.com/robshakir/pyangbind.git && cd pyangbind && python3 setup.py install
 
-<<<<<<< Updated upstream
-=======
 # Install nano
 RUN apt-get install -y nano
 
->>>>>>> Stashed changes
 # Use a nicer Linux shell
 COPY bashrc /root/.bashrc
 ENTRYPOINT [ "/bin/bash" ]
