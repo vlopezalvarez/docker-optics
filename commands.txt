@@ -49,7 +49,7 @@ python3 clientTopology.py
 == RESTCONF
 
 - Generate YAML file
-cd OFC_SC472/restconf
+cd /root/OFC_SC472/restconf
 java -jar swagger-generator-cli-1.1.11-executable.jar -yang-dir ../yang/ -output connection.yaml connection
 
 - Generate Server Code
