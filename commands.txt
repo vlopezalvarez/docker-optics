@@ -72,6 +72,9 @@ curl -X POST -H "Content-Type: application/yang-data+json" http://127.0.0.1:8080
 cd /root/OFC_SC472/restconf/connectionserver 
 python3 -m swagger_server
 
+- Run a client in the Docker image
+docker exec -it optics-image /bin/bash
+
 - Interact with the Example RESTCONF Server
 cd /root/OFC_SC472/restconf
 curl -X POST -H "Content-Type: application/yang-data+json" http://127.0.0.1:8080/data/connection/ -d@conn1.json
