@@ -27,7 +27,7 @@ RUN apt-get install -y graphviz
 RUN apt-get install -y openjdk-11-jre
 
 # Install Pyangbind
-RUN git clone https://github.com/robshakir/pyangbind.git && cd pyangbind && python3 setup.py install
+# RUN git clone https://github.com/robshakir/pyangbind.git && cd pyangbind && python3 setup.py install
 
 # Install nano
 RUN apt-get install -y nano
