@@ -79,3 +79,27 @@ docker exec -it optics-image /bin/bash
 cd /root/OFC_SC472/restconf
 curl -X POST -H "Content-Type: application/yang-data+json" http://127.0.0.1:8080/data/connection/ -d@conn1.json
 curl -X GET -H "Content-Type: application/yang-data+json" http://127.0.0.1:8080/data/connection=0/
+
+== GRPC
+
+- Run connectionService SERVER
+cd /root/OFC_SC472/grpc/connectionService
+python3 connectionService_server.py
+
+- Run connectionService CLIENT (in another window)
+docker exec -it optics-image /bin/bash
+cd /root/OFC_SC472/grpc/connectionService
+python3 connectionService_client.py
+
+- Run connectionServiceWithNotifSERVER
+cd /root/OFC_SC472/grpc/connectionServiceWithNotif
+python3 connectionServiceWithNotif_server.py
+
+- Capture the traffic
+docker exec -it optics-image /bin/bash
+tcpdump -i lo -w mycap.pcap
+
+- Run connectionServiceWithNotif CLIENT (in another window)
+docker exec -it optics-image /bin/bash
+cd /root/OFC_SC472/grpc/connectionServiceWithNotif
+python3 connectionServiceWithNotif_client.py
